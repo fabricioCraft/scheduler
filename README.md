@@ -140,3 +140,7 @@ No authentication required.
 ## About DinastIA Community
 
 This project is developed by **DinastIA Community**, the largest AI Agents community in Brazil, dedicated to advancing artificial intelligence and automation technologies.
+
+## License
+
+This project is licensed under the MIT License.
