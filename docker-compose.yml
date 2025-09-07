@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Serviço do Agendador Python
+  scheduler:
+    # Esta linha diz ao Docker para usar o 'Dockerfile' no mesmo diretório
+    build: .
+    restart: unless-stopped
+    ports:
+      # Mude o primeiro número se a porta 8000 já estiver em uso. Ex: "8085:8000"
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # IMPORTANTE: Use a mesma senha forte definida para o Redis abaixo.
+      - REDIS_PASSWORD=jNOBPEmVh8f1142jSYKY
+    depends_on:
+      - redis
+
+  # Serviço do Banco de Dados Redis
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --requirepass jNOBPEmVh8f1142jSYKY
+    volumes:
+      - scheduler_redis_data:/data
+
+volumes:
+  scheduler_redis_data:
